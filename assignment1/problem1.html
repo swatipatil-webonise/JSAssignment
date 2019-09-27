@@ -5,38 +5,37 @@
     <title>Assignment1-Problem1</title>
     <script>
         function findOccurrencesOfNumbers() {
-            let inputString = "";
-            inputString = prompt("Enter the series of numbers : ","Ex 1,2,4,2,5");
-            let numbers = inputString.split(",");
+            let inputString = prompt('Enter the series of numbers : ','Ex 1,2,4,2,5');
+            let inputArray = inputString.split(",");
 
-            for (let iterator = 0; iterator < numbers.length; iterator++) {
-                for (let comparisionIterator = 0; comparisionIterator < numbers.length; comparisionIterator++) {
-                    if (parseInt(numbers[iterator]) > parseInt(numbers[comparisionIterator])) {
-                        let temp = numbers[iterator];
-                        numbers[iterator] = numbers[comparisionIterator];
-                        numbers[comparisionIterator] = temp;
+            for (let passesIterator = 0; passesIterator < inputArray.length; passesIterator++) {
+                for (let comparisionIterator = 0; comparisionIterator < inputArray.length; comparisionIterator++) {
+                    if (parseInt(inputArray[passesIterator]) > parseInt(inputArray[comparisionIterator])) {
+                        let temp = inputArray[passesIterator];
+                        inputArray[passesIterator] = inputArray[comparisionIterator];
+                        inputArray[comparisionIterator] = temp;
                     }
                 }
             }
 
-            let numberCountArray = [];
-            let duplicatesCount = 0;
-            for (let passesIterator = 0 ; passesIterator < numbers.length ; passesIterator++ ) {
-                duplicatesCount = 0;
-                for (let duplicatesComparator = 0; duplicatesComparator < numbers.length; duplicatesComparator++){
-                    if(numbers[passesIterator] == numbers[duplicatesComparator]) {
-                        duplicatesCount++;
+            let duplicateCountArray = [];
+            let duplicatesCounter = 0;
+            for (let passesIterator = 0 ; passesIterator < inputArray.length ; passesIterator++ ) {
+                duplicatesCounter = 0;
+                for (let duplicatesComparator = 0; duplicatesComparator < inputArray.length; duplicatesComparator++){
+                    if(inputArray[passesIterator] == inputArray[duplicatesComparator]) {
+                        duplicatesCounter++;
                     }
                 }
-                numberCountArray[passesIterator] = duplicatesCount;
+                duplicateCountArray[passesIterator] = duplicatesCounter;
             }
 
-            for (let counter = 0; counter < numbers.length; counter++ ) {
-                alert(numbers[counter] + " " + numberCountArray[counter]);
-                if (numberCountArray[counter] > 1) {
-                    let checker = numberCountArray[counter] - 1;
+            for (let arrayIterator = 0; arrayIterator < inputArray.length; arrayIterator++ ) {
+                document.write('${inputArray[arrayIterator]} : ${duplicateCountArray[arrayIterator] <br>');
+                if (duplicateCountArray[arrayIterator] > 1) {
+                    let checker = duplicateCountArray[arrayIterator] - 1;
                     while (checker > 0) {
-                        counter++;
+                        arrayIterator++;
                         checker--;
                     }
                 }
@@ -45,6 +44,6 @@
     </script>
 </head>
 <body>
-    <button  onclick="findOccurrencesOfNumbers()">Find Occurrences</button>
+    <center><button  onclick="findOccurrencesOfNumbers()">Find Occurrences</button></center>
 </body>
 </html>
