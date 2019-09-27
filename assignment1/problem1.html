@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment1-Problem1</title>
+    <script>
+        function findOccurencesOfNumbers() {
+            var numbersIncludingCommas = "";
+            numbersIncludingCommas = prompt("Enter the series of numbers : ","Ex 1,2,4,2,5");
+            var numbersStringArray = numbersIncludingCommas.split(",");
+
+            for (var numbersStringArrayPassesIterator = 0; numbersStringArrayPassesIterator < numbersStringArray.length; numbersStringArrayPassesIterator++) {
+                for (var numbersStringArrayComparisionIterator = 0; numbersStringArrayComparisionIterator < numbersStringArray.length; numbersStringArrayComparisionIterator++) {
+                    if (parseInt(numbersStringArray[numbersStringArrayPassesIterator]) > parseInt(numbersStringArray[numbersStringArrayComparisionIterator])) {
+                        var temp = numbersStringArray[numbersStringArrayPassesIterator];
+                        numbersStringArray[numbersStringArrayPassesIterator] = numbersStringArray[numbersStringArrayComparisionIterator];
+                        numbersStringArray[numbersStringArrayComparisionIterator] = temp;
+                    }
+                }
+            }
+
+            var numberCountArray = [];
+            var duplicatesCount = 0;
+            for (var passessIteratorForCountingDuplicates = 0 ; passessIteratorForCountingDuplicates < numbersStringArray.length ; passessIteratorForCountingDuplicates++ ) {
+                duplicatesCount = 0;
+                for (var duplicatesComparator = 0; duplicatesComparator < numbersStringArray.length; duplicatesComparator++){
+                    if(numbersStringArray[passessIteratorForCountingDuplicates] == numbersStringArray[duplicatesComparator]) {
+                        duplicatesCount++;
+                    }
+                }
+                numberCountArray[passessIteratorForCountingDuplicates] = duplicatesCount;
+            }
+
+            for (var duplicateNumberIgnoreCounter = 0; duplicateNumberIgnoreCounter < numbersStringArray.length; duplicateNumberIgnoreCounter++ ) {
+                alert(numbersStringArray[duplicateNumberIgnoreCounter] + " " + numberCountArray[duplicateNumberIgnoreCounter]);
+                if (numberCountArray[duplicateNumberIgnoreCounter] > 1) {
+                    var checker = numberCountArray[duplicateNumberIgnoreCounter] - 1;
+                    while (checker > 0) {
+                        duplicateNumberIgnoreCounter++;
+                        checker--;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button  onclick="findOccurencesOfNumbers()">Find Occurences</button>
+</body>
+</html>
