@@ -5,8 +5,9 @@
     <title>Title</title>
     <script>
         function doArithmeticOperation(operationCode) {
-            var number1 = document.getElementById("number1").value;
-            var number2 = document.getElementById("number2").value;
+            let number1 = document.getElementById("number1").value;
+            let number2 = document.getElementById("number2").value;
+
             if (number1 == "") {
                 alert("Please enter the both number1.");
                 return false;
@@ -15,6 +16,7 @@
                 alert("Please enter the both number2.");
                 return false;
             }
+
             if (isNaN(parseInt(number2))) {
                 alert("Input is invalid");
                 return false;
@@ -23,11 +25,11 @@
                 alert("Input is invalid");
                 return false;
             }
+
             if (operationCode == 1) {
                 document.write("Addition is " + (parseInt(number1) + (parseInt(number2))));
             } else {
                 document.write("Subtraction is " + (parseInt(number1) - (parseInt(number2))));
-
             }
         }
     </script>
