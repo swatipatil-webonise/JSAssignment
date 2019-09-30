@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function storeDataIntoTimestamp() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            var nameFormat = /^[A-Za-z\s]+$/;
+            if (name == '' || email == '') {
+                alert('Plz enter all details.');
+                return false;
+            }
+            if (email.match(mailFormat) && name.match(nameFormat)) {
+                sessionStorage.setItem('name', name);
+                sessionStorage.setItem('email', email);
+                sessionStorage.setItem('time', new Date().toString());
+                return true;
+            } else {
+                alert('You have entered an invalid details!');
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+<center><br><br><br><br>
+    <form onsubmit="return storeDataIntoTimestamp()" action="problem2_2.html">
+        Name : <input type="text" id="name"><br><br>
+        Email : <input type="text" id="email"><br><br>
+        <input type="submit" value="Submit"><br><br>
+    </form>
+</center>
+</body>
+</html>

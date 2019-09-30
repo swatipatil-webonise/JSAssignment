@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function checkWhetherPropagatesOrNOt() {
+            var form = document.getElementById('myForm');
+            form.addEventListener('click', function (ev) {
+                alert('you clicked to form');
+            });
+            var check = document.getElementById('check');
+            check.addEventListener('click', function (ev) {
+                alert('you clicked both')
+            }, true);
+        }
+    </script>
+</head>
+<body>
+<form onclick="return checkWhetherPropagatesOrNOt()" id="myForm">
+    <input type="checkbox" onclick="return checkWhetherPropagatesOrNOt()" name="check" id="check">Java
+</form>
+</body>
+</html>

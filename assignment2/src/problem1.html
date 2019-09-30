@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var window1 = [];
+        var iterator;
+        function doOpen() {
+            for(iterator = 1; iterator <= 10; iterator++) {
+                window1[iterator] = window.open('http://google.com', "_blank", "width=200, height=200");
+                setTimeout(function () {
+                    window1[iterator].close();
+                }, 3000);
+            }
+        }
+        function doClose() {
+            for(iterator = iterator; iterator <= window1.length; iterator++) {
+            clearTimeout(window1[iterator]);}
+            alert('hey you are done with the window opening game.');
+        }
+    </script>
+</head>
+<body>
+<center>
+    <input type=button value="Start Opening Windows" onclick="doOpen()">
+    <input type=button value="Stop Opening Windows" onclick="doClose()">
+</center>
+</body>
+</html>

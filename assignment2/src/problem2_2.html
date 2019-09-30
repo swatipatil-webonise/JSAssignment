@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        function getSession() {
+            document.write('Name = ${sessionStorage.getItem("name")} </br>');
+            document.write('Email = ${sessionStorage.getItem("email")}</br>');
+            document.write('Time = ${sessionStorage.getItem("time")}');
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <br><br><br><br><center><button onclick="getSession()">get Session</button></center>
+    </form>
+</body>
+</html>
