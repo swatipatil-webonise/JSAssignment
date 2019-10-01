@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script>
-        var window1 = [];
-        var iterator = 0;
-        function doOpen(value) {
-            if (value == '1') {
-                for (var iterator = 1; iterator <= 5; iterator++) {
-                    window1[iterator] = window.open('http://www.google.com');
-                    closeWindow(iterator);
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script>
+            let windows = [];
+            let iterator = 0;
+            function doOpen(value) {
+                let iterator;
+                if (value === '1') {
+                    for (iterator = 1; iterator <= 5; iterator++) {
+                        windows[iterator] = window.open('http://www.google.com');
+                        closeWindow(iterator);
+                    }
+                } else {
+                    alert('Done');
+                    iterator = 100;
+                    return false;
                 }
-            } else {
-                alert('done');
-                iterator = 100;
-                return false;
             }
-        }
 
-        function closeWindow(iterator) {
-            setTimeout(function () {
-                window1[iterator].close();
-            }, iterator * 1000);
-        }
-    </script>
-</head>
-<body>
-<input type=button value="Open Windows" onclick="return doOpen('1')">
-<input type=button value="Stop" onclick="doOpen('2')">
-</body>
+            function closeWindow(iterator) {
+                const WINDOW_STAY_TIME = 1000;
+                setTimeout(function () {
+                    windows[iterator].close();
+                }, iterator * WINDOW_STAY_TIME);
+            }
+        </script>
+    </head>
+    <body>
+        <input type=button value="Open Windows" onclick="return doOpen('1')">
+        <input type=button value="Stop" onclick="doOpen('2')">
+    </body>
 </html>
