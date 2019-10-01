@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Closure Demo</title>
+        <script>
+            function printNumbers() {
+                const SLEEP_TIME = 1000;
+                let counter = 1;
+                setInterval(function () {
+                    document.write(counter++ + '<br>');
+                }, SLEEP_TIME);
+            }
+            printNumbers();
+        </script>
+    </head>
+</html>
