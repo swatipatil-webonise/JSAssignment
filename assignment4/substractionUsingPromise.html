@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script>
+            let number1 = 20;
+            let number2 = 100;
+            let promise = new Promise(function(resolve, reject) {
+                if(number2 <= number1) {
+                    resolve();
+                } else {
+                    reject();
+                }
+            });
+
+            promise.
+            then(function () {
+                console.log(`Substraction = ${number1-number2}`);
+            }).
+            catch(function () {
+                console.log(`Substarction is negative.`);
+            });
+        </script>
+    </head>
+</html>

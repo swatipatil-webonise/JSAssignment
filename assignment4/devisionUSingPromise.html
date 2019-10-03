@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script>
+            let number1 = 20;
+            let number2 = 10;
+            let promise = new Promise(function(resolve, reject) {
+                if(number2 !== 0) {
+                    resolve();
+                } else {
+                    reject();
+                }
+            });
+
+            promise.
+            then(function () {
+                console.log(`Devision = ${number1/number2}`);
+            }).
+            catch(function () {
+                console.log(`Can't devide by zero`);
+            });
+        </script>
+    </head>
+</html>

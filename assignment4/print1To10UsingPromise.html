@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script>
+            const TIME_TO_SLEEP = 1000;
+            async function printNumbers(endNumber) {
+                for (let iterator = 1; iterator <= endNumber; iterator++) {
+                    console.log(await new Promise(resolver => setTimeout(resolver, TIME_TO_SLEEP, iterator)));
+                }
+            }
+            printNumbers(10).then(reject => console.log('rejected'));
+        </script>
+    </head>
+</html>
