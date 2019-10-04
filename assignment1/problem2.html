@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script>
-        function doArithmeticOperation(operationCode) {
-            let number1 = document.getElementById('number1').value;
-            let number2 = document.getElementById('number2').value;
+    <head>
+        <meta charset="UTF-8">
+        <title>Assignment1-Problem2</title>
+        <script>
+            const OPERATIONS = {
+                ADD: 'ADD',
+                SUBTRACT: 'SUBTRACT',
+            };
+            function doArithmeticOperation(operationCode) {
+                let number1 = document.getElementById('number1').value;
+                let number2 = document.getElementById('number2').value;
 
-            if (number1 == '') {
-                alert('Please enter the both number1.');
-                return false;
-            }
-            if (number2 == '') {
-                alert('Please enter the both number2.');
-                return false;
-            }
+                if (number1 === '') {
+                    alert('Please enter the both number1.');
+                    return false;
+                }
+                if (number2 === '') {
+                    alert('Please enter the both number2.');
+                    return false;
+                }
 
-            if (isNaN(parseInt(number2))) {
-                alert('Input is invalid');
-                return false;
-            }
-            if (isNaN(parseInt(number1))) {
-                alert('Input is invalid');
-                return false;
-            }
+                if (isNaN(parseInt(number2))) {
+                    alert('Input is invalid');
+                    return false;
+                }
+                if (isNaN(parseInt(number1))) {
+                    alert('Input is invalid');
+                    return false;
+                }
 
-            if (operationCode == 1) {
-                document.write('Addition is : ${(parseInt(number1) - parseInt(number2))}');
-            } else {
-                document.write('Subtraction is : ${(parseInt(number1) - parseInt(number2))}');
+                if (operationCode === OPERATIONS.ADD) {
+                    document.write(`Addition is : ${(parseInt(number1) + parseInt(number2))}`);
+                } else {
+                    document.write(`Subtraction is : ${(parseInt(number1) - parseInt(number2))}`);
+                }
             }
-        }
-    </script>
-</head>
-<body>
-<center>
-    <form name="myForm">
-        <input type="text" id="number1"><br><br>
-        <input type="text" id="number2"><br><br>
-        <button onclick="doArithmeticOperation('1')">Add</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button onclick="doArithmeticOperation('2')">Subtract</button>
-    </form>
-</center>
-</body>
+        </script>
+    </head>
+    <body>
+        <center>
+            <form name="myForm">
+                <input type="text" id="number1"><br><br>
+                <input type="text" id="number2"><br><br>
+                <button onclick="doArithmeticOperation(OPERATIONS.ADD)">Add</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onclick="doArithmeticOperation(OPERATIONS.SUBTRACT)">Subtract</button>
+            </form>
+        </center>
+    </body>
 </html>
