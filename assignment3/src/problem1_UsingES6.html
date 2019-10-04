@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>ES Demo</title>
+        <script>
+            const WAIT_TIME = 1000;
+            function printNumbers() {
+                for (let iterator = 1; iterator <= 10; iterator++) {
+                    setTimeout(() => document.write(`${iterator} <br>`), iterator * WAIT_TIME);
+                }
+            }
+            printNumbers();
+        </script>
+    </head>
+</html>
