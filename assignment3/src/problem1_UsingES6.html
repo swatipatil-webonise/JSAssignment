@@ -4,13 +4,14 @@
         <meta charset="UTF-8">
         <title>ES Demo</title>
         <script>
-            const WAIT_TIME = 1000;
-            function printNumbers() {
-                for (let iterator = 1; iterator <= 10; iterator++) {
-                    setTimeout(() => document.write(`${iterator} <br>`), iterator * WAIT_TIME);
-                }
-            }
-            printNumbers();
+            const SLEEP_TIME = 1000;
+            let counter = 1;
+            let interval = setInterval(() => {
+                if(counter <= 10) {
+                    document.write(`${counter++} <br>`);
+                } else {
+                    clearInterval(interval);
+                }}, SLEEP_TIME);
         </script>
     </head>
 </html>
