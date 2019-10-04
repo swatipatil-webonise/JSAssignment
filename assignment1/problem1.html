@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Assignment1-Problem1</title>
+        <script>
+            function findOccurrencesOfNumbers() {
+                let inputString = prompt('Enter the series of numbers : ','Ex 1,2,4,2,5');
+                let inputArray = inputString.split(',');
+
+                for (let passesIterator = 0; passesIterator < inputArray.length; passesIterator++) {
+                    for (let comparisionIterator = 0; comparisionIterator < inputArray.length; comparisionIterator++) {
+                        if (parseInt(inputArray[passesIterator]) > parseInt(inputArray[comparisionIterator])) {
+                            let temp = inputArray[passesIterator];
+                            inputArray[passesIterator] = inputArray[comparisionIterator];
+                            inputArray[comparisionIterator] = temp;
+                        }
+                    }
+                }
+
+                let duplicateCountArray = [];
+                let duplicatesCounter = 0;
+                for (let passesIterator = 0 ; passesIterator < inputArray.length ; passesIterator++ ) {
+                    duplicatesCounter = 0;
+                    for (let duplicatesComparator = 0; duplicatesComparator < inputArray.length; duplicatesComparator++){
+                        if(inputArray[passesIterator] === inputArray[duplicatesComparator]) {
+                            duplicatesCounter++;
+                        }
+                    }
+                    duplicateCountArray[passesIterator] = duplicatesCounter;
+                }
+
+                for (let arrayIterator = 0; arrayIterator < inputArray.length; arrayIterator++ ) {
+                    document.write(`${inputArray[arrayIterator]} : ${duplicateCountArray[arrayIterator]} <br>`);
+                    if (duplicateCountArray[arrayIterator] > 1) {
+                        let checker = duplicateCountArray[arrayIterator] - 1;
+                        while (checker > 0) {
+                            arrayIterator++;
+                            checker--;
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <center>
+            <button  onclick="findOccurrencesOfNumbers()">Find Occurrences</button>
+        </center>
+    </body>
+</html>
