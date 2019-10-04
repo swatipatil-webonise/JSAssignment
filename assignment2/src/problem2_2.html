@@ -3,15 +3,16 @@
     <head>
         <script type="text/javascript">
             function getSession() {
-                document.write('Name = ${sessionStorage.getItem(name)} </br>');
-                document.write('Email = ${sessionStorage.getItem(email)}</br>');
-                document.write('Time = ${sessionStorage.getItem(time)}');
+                users = JSON.parse(localStorage.getItem('users'));
+                for(let iterator = 0; iterator < users.length; iterator++) {
+                    document.write(`User ${iterator+1} = <br> Name : ${users[iterator].name} <br> Email : ${users[iterator].email} <br> Time : ${users[iterator].time}<br>`);
+                }
             }
         </script>
     </head>
     <body>
         <form>
-            <br><br><br><br><center><button onclick="getSession()">get Session</button></center>
+            <br><br><br><br><center><button onclick="getSession()">get Users</button></center>
         </form>
     </body>
 </html>
