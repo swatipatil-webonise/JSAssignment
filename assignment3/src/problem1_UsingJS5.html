@@ -4,14 +4,14 @@
         <meta charset="UTF-8">
         <title>Closure Demo</title>
         <script>
-            function printNumbers() {
-                const SLEEP_TIME = 1000;
-                let counter = 1;
-                setInterval(function () {
-                    document.write(counter++ + '<br>');
-                }, SLEEP_TIME);
-            }
-            printNumbers();
+            const SLEEP_TIME = 1000;
+            let counter = 1;
+            let interval = setInterval(() => {
+                if(counter <= 10) {
+                    document.write(`${counter++} <br>`);
+                } else {
+                    clearInterval(interval);
+                }}, SLEEP_TIME);
         </script>
     </head>
 </html>

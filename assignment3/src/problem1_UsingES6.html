@@ -4,13 +4,10 @@
         <meta charset="UTF-8">
         <title>ES Demo</title>
         <script>
+            const WAIT_TIME = 1000;
             function printNumbers() {
-                const WAIT_TIME = 1000;
-                for (let iterator = 1; iterator < 10; iterator++) {
-                    function timeout(iterator) {
-                        setTimeout(() => document.write(iterator + '<br>'), iterator * WAIT_TIME);
-                    }
-                    timeout(iterator);
+                for (let iterator = 1; iterator <= 10; iterator++) {
+                    setTimeout(() => document.write(`${iterator} <br>`), iterator * WAIT_TIME);
                 }
             }
             printNumbers();
