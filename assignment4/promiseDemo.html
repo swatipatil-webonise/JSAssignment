@@ -4,25 +4,25 @@
         <meta charset="UTF-8">
         <title>Title</title>
         <script>
-            let promise = new Promise(function(resolve, reject) {
-                if (delay(1000)) {
-                    resolve();
-                } else {
-                    reject();
-                }
-            });
+           function delay(ML) {
+               return new Promise(function (resolve, reject) {
+                   if (ML > 0) {
+                       setTimeout(() => {
+                           console.log('Sleeping..')
+                       }, ML)
+                       resolve('Done');
+                   } else {
+                       reject('Task not done');
+                   }
+               });
+           }
 
-            promise.
-            then(function() {
-                console.log('Delay done');
-            }).catch(function() {
-                console.log('Delay not done');
-            })
-
-            function delay(ML) {
-                setTimeout(() => {} , ML);
-                return true;
-            }
+           delay(3000).
+           then(function(resolve) {
+                console.log(resolve);
+           }).catch(function(reject) {
+               console.log(reject);
+           })
         </script>
     </head>
 </html>

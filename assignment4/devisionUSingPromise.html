@@ -4,23 +4,34 @@
         <meta charset="UTF-8">
         <title>Title</title>
         <script>
-            let number1 = 20;
-            let number2 = 10;
-            let promise = new Promise(function(resolve, reject) {
-                if(number2 !== 0) {
-                    resolve();
-                } else {
-                    reject();
-                }
-            });
+            function getPromise() {
+                let number1 = parseInt(document.getElementById('number1').value);
+                let number2 = parseInt(document.getElementById('number2').value);
+                return new Promise(function (resolve, reject) {
+                    if(number2 !== 0) {
+                        resolve(`Devision = ${number1/number2}`);
+                    } else {
+                        reject(`Can't devide by zero`);
+                    }
+                });
+            }
 
-            promise.
-            then(function () {
-                console.log(`Devision = ${number1/number2}`);
-            }).
-            catch(function () {
-                console.log(`Can't devide by zero`);
-            });
+            function doDevision() {
+                getPromise().
+                then(function (resolve) {
+                    console.log(resolve);
+                }).
+                catch(function (reject) {
+                    console.log(reject);
+                });
+            }
         </script>
     </head>
+    <body>
+        <center>
+            Number1 : <input type="text" id="number1"><br><br>
+            Number2 : <input type="text" id="number2"><br><br>
+            <input type="button" value="Devide" onclick="doDevision()">
+        </center>
+    </body>
 </html>
