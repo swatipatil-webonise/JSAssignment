@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Assignment2-Problem1</title>
+        <script>
+            let windows = [];
+            let iterator = 0;
+            let timeOut = [];
+            const WINDOW_STAY_TIME = 1000;
+            const OPERATIONS = {
+                START: 'START',
+                STOP: 'STOP',
+            };
+
+            function openWindow(operationValue) {
+                if (operationValue === OPERATIONS.START) {
+                    for (iterator = 1; iterator <= 5; iterator++) {
+                        timeOut[iterator] =  setTimeout(function () {
+                            windows[iterator] = window.open('http://www.google.com');
+                            closeWindow(iterator);
+                        }, iterator * WINDOW_STAY_TIME);
+                    }
+                }
+                else {
+                    for (iterator = 1; iterator <= 5; iterator++) {
+                        clearTimeout(timeOut[iterator]);
+                    }
+                }
+            }
+
+            function closeWindow(iterator) {
+                setTimeout(function () {
+                    windows[iterator].close();
+                }, iterator * WINDOW_STAY_TIME);
+            }
+        </script>
+    </head>
+    <body>
+        <input type=button value="Open Windows" onclick="return openWindow(OPERATIONS.START)">
+        <input type=button value="Stop" onclick="closeWindow(OPERATIONS.STOP)">
+    </body>
+</html>

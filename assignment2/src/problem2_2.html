@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+            function getSession() {
+                users = JSON.parse(localStorage.getItem('users'));
+                for(let iterator = 0; iterator < users.length; iterator++) {
+                    document.write(`User ${iterator+1} = <br> Name : ${users[iterator].name} <br> Email : ${users[iterator].email} <br> Time : ${users[iterator].time}<br>`);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form>
+            <br><br><br><br><center><button onclick="getSession()">get Users</button></center>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+        <title>Assignment2-Problem1</title>
+        <script>
+            let users = [];
+            let user = {name : '', email : '', time : ''};
+            function storeAndValidateUsers() {
+                let name = document.getElementById('name').value;
+                let email = document.getElementById('email').value;
+                const MAIL_FORMAT = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                const NAME_FORMAT = /^[A-Za-z\s]+$/;
+
+                if (name === '' || email === '') {
+                    alert('Please enter all details.');
+                    return false;
+                }
+                if (email.match(MAIL_FORMAT) && name.match(NAME_FORMAT)) {
+                    users = JSON.parse(localStorage.getItem('users'));
+                    if(!users) {
+                        users = [];
+                    }
+                    for (let iterator = 0; iterator < users.length; iterator++) {
+                       if (users[iterator].email === email) {
+                           alert('Email.already exists.');
+                           return false;
+                       }
+                    }
+                    user.name = name;
+                    user.email = email;
+                    user.time =  new Date().toString();
+                    users.push(user);
+                    localStorage.setItem('users', JSON.stringify(users));
+                    return true;
+                } else {
+                    alert('You have entered an invalid details!');
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <center><br><br><br><br>
+            <form onsubmit="return storeAndValidateUsers()" action="problem2_2.html">
+                Name : <input type="text" id="name"><br><br>
+                Email : <input type="text" id="email"><br><br>
+                <input type="submit" value="Submit"><br><br>
+            </form>
+        </center>
+    </body>
+</html>
