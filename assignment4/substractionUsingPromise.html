@@ -4,11 +4,9 @@
         <meta charset="UTF-8">
         <title>Title</title>
         <script>
-            function getPromise() {
-                let number1 = parseInt(document.getElementById('number1').value);
-                let number2 = parseInt(document.getElementById('number2').value);
+            function getPromiseToDoSubstraction(number1, number2) {
                 return new Promise(function (resolve, reject) {
-                    if (number2 <= number1) {
+                    if (!isNaN(number2) && !isNaN(number1)) {
                         resolve(`Subtraction = ${number1 - number2}`);
                     } else {
                         reject(`Substraction is negative.`);
@@ -17,12 +15,14 @@
             }
 
             function doSubtraction() {
-                getPromise().
-                then(function (resolve) {
-                    console.log(resolve);
+                let number1 = parseInt(document.getElementById('number1').value);
+                let number2 = parseInt(document.getElementById('number2').value);
+                getPromiseToDoSubstraction(number1, number2).
+                then(function (succeed) {
+                    console.log(succeed);
                 }).
-                catch(function (reject) {
-                    console.log(reject);
+                catch(function (error) {
+                    console.log(error);
                 });
             }
         </script>
@@ -31,7 +31,7 @@
         <center>
             Number1 : <input type="text" id="number1"><br><br>
             Number2 : <input type="text" id="number2"><br><br>
-            <input type="button" value="Devide" onclick="doSubtraction()">
+            <input type="button" value="Substract" onclick="doSubtraction()">
         </center>
     </body>
 </html>

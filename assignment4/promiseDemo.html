@@ -4,25 +4,24 @@
         <meta charset="UTF-8">
         <title>Title</title>
         <script>
-           function delay(ML) {
-               return new Promise(function (resolve, reject) {
-                   if (ML > 0) {
-                       setTimeout(() => {
-                           console.log('Sleeping..')
-                       }, ML)
-                       resolve('Done');
-                   } else {
-                       reject('Task not done');
-                   }
-               });
-           }
+            function delay(ML) {
+                return new Promise(function (resolve, reject) {
+                    if (!(isNaN(ML))) {
+                        setTimeout(() => {
+                            console.log('Sleeping..')
+                        }, ML)
+                        resolve('Done');
+                    } else {
+                        reject('Task not done');
+                    }
+                });
+            }
 
-           delay(3000).
-           then(function(resolve) {
-                console.log(resolve);
-           }).catch(function(reject) {
-               console.log(reject);
-           })
+            delay(3000).then(function (succeed) {
+                console.log(succeed);
+            }).catch(function (error) {
+                console.log(error);
+            })
         </script>
     </head>
 </html>
