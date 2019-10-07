@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script>
+            const MILISEC = 1000;
+
+            function provideDelay() {
+                return new Promise(function (resolve, reject) {
+                    if (!(isNaN(MILISEC))) {
+                        setTimeout(() => {
+                            console.log('Sleeping..')
+                        }, MILISEC)
+                        resolve('Done');
+                    } else {
+                        reject('Task not done');
+                    }
+                });
+            }
+
+            provideDelay(MILISEC).then((succeed) => {
+                console.log(succeed);
+            }).catch((error) => {
+                console.log(error);
+            })
+        </script>
+    </head>
+</html>
