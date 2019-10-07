@@ -4,10 +4,10 @@
         <meta charset="UTF-8">
         <title>Title</title>
         <script>
-            function getPromise(number) {
+            function printNumber(number) {
                 return new Promise(function(resolve , reject) {
                      if(!(isNaN(number))){
-                         setTimeout(()=>{resolve(number)}, 1000*number);
+                         setTimeout(()=>{ resolve(number) }, 1000*number);
                      }
                      else {
                          reject('rejected');
@@ -16,9 +16,9 @@
             }
 
             for(let number = 1; number <= 10;number++) {
-                getPromise(number).then(function(succeed){
+                printNumber(number).then((succeed) => {
                     console.log(succeed);
-                }).catch(function(error){
+                }).catch((error) => {
                     console.log(error);
                 })
             }

@@ -4,12 +4,14 @@
         <meta charset="UTF-8">
         <title>Title</title>
         <script>
-            function delay(ML) {
+            const MILISEC = 1000;
+
+            function provideDelay() {
                 return new Promise(function (resolve, reject) {
-                    if (!(isNaN(ML))) {
+                    if (!(isNaN(MILISEC))) {
                         setTimeout(() => {
                             console.log('Sleeping..')
-                        }, ML)
+                        }, MILISEC)
                         resolve('Done');
                     } else {
                         reject('Task not done');
@@ -17,9 +19,9 @@
                 });
             }
 
-            delay(3000).then(function (succeed) {
+            provideDelay(MILISEC).then((succeed) => {
                 console.log(succeed);
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
             })
         </script>
