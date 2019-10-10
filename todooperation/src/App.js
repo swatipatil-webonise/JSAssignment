@@ -1,21 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Todo } from './Todo';
 import Home from './Home';
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-class App extends React.Component {
-  render() {
-    return (
-      <Router>
-        <Switch>
+function App(){
+  return (
+    <Router>
+      <Switch>
         <Route exact path="/todo" component={Todo} />
-         <Route path="/" component={Home} />
-        </Switch>
-      </Router>
-    );
-  }
+        <Route path="/" component={Home} />
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;
