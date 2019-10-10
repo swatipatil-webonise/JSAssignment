@@ -1,8 +1,8 @@
 import React from 'react';
 import { AddTodo } from './AddTodo';
 import { ListTodo } from './ListTodo';
-import { connect } from "react-redux";
-import { addTodo , deleteTodo , updateTodo} from "./store/actions/todo";
+import { connect } from 'react-redux';
+import { addTodo , deleteTodo , updateTodo} from './store/actions/todo';
 
 class Todo extends React.Component {
   constructor(props) {
