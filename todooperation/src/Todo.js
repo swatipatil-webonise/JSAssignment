@@ -94,9 +94,9 @@ export class Todo extends React.Component {
   onEdit = (id) => {
     this.setState({
       description: this.state.todos[id-1].desc,
+      isUpdate : true,
+      tempId : id,
     });
-    this.state.isUpdate = true;
-    this.state.tempId = id;
   }
 
   render() {
