@@ -1,23 +1,23 @@
 const todoReducer = (state = [], action) => {
   switch (action.type) {
+    case 'LOAD_TODO':
+      return action.todos;
+
     case 'ADD_TODO':
       return [
-        ...state,
-        {
-          description: action.textToAdd,
-        }
+        ...state, action.data
       ];
 
     case 'DELETE_TODO':
-      return state.filter((todo) => todo.description !== action.textToDelete);
+      return state.filter((todo) => todo.id !== action.id);
 
     case 'UPDATE_TODO':
-      for (let i = 0; i < state.length; i++) {
-        if (state[i].description === action.textToUpdate) {
-          state[i].description = action.textToSet;
+      return state.map((todo) => {
+        if(todo.id === action.id) {
+          todo.desc = action.textToSet;
         }
-      }
-      return state;
+        return todo;
+      })
 
     default:
       return state;
@@ -25,3 +25,4 @@ const todoReducer = (state = [], action) => {
 };
 
 export default todoReducer;
+ 

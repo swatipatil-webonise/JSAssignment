@@ -2,17 +2,21 @@ import React from 'react';
 import { AddTodo } from './AddTodo';
 import { ListTodo } from './ListTodo';
 import { connect } from 'react-redux';
-import { addTodo , deleteTodo , updateTodo} from './store/actions/todo';
+import { saveTodo, removeTodo, editTodo, getTodo } from './store/actions/todo';
 
 class Todo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       description: '',
-      isUpdate : false,
-      textNeedsToBeUpdated : '',
-      id : 0,
+      isUpdate: false,
+      buttonValue: 'Add',
+      updateId: -1,
     };
+  }
+
+  componentDidMount() {
+    this.props.getTodo();
   }
 
   onUserType = event => {
@@ -23,29 +27,38 @@ class Todo extends React.Component {
   };
 
   onAddTodo = () => {
+    if(this.state.description === '') {
+      alert('Please fill the feilds .');
+      return;
+    }
     if (this.state.isUpdate) {
-      this.props.updateTodo(this.state.textNeedsToBeUpdated,this.state.description);
+      this.props.updateTodo(this.state.updateId, this.state.description);
       this.setState({
-        description : '',
-        textNeedsToBeUpdated : '',
+        description: '',
+        isUpdate: false,
+        buttonValue: 'Add',
+        updateId: -1,
       })
     } else {
       this.props.addTodo(this.state.description);
       this.setState({
-        description : '',
+        description: '',
       })
     }
   }
 
-  onDelete = (textToBeDeleted) => {
-    this.props.deleteTodo(textToBeDeleted);
+  onDelete = (id) => {
+    this.props.deleteTodo(id);
   }
 
-  onEdit = (textToUpdate) => {
+  onEdit = (id) => {
+    alert(id);
+    let value = this.props.todoData[id - 1].desc;
     this.setState({
-      description: textToUpdate,
-      isUpdate : true,
-      textNeedsToBeUpdated : textToUpdate,
+      updateId: id,
+      description: value,
+      isUpdate: true,
+      buttonValue: 'Update',
     });
   }
 
@@ -54,8 +67,8 @@ class Todo extends React.Component {
       <div>
         <center><br></br>
           <h1>Welcome to our todo app...</h1><br></br>
-          <AddTodo description={this.state.description} onUserType={this.onUserType} onAddTodo={this.onAddTodo} /><br></br><br></br>
-          <ListTodo id={this.state.id} todos={this.props.todoData} onDelete={this.onDelete} onEdit={this.onEdit} />
+          <AddTodo buttonValue={this.state.buttonValue} description={this.state.description} onUserType={this.onUserType} onAddTodo={this.onAddTodo} /><br></br><br></br>
+          <ListTodo todos={this.props.todoData} onDelete={this.onDelete} onEdit={this.onEdit} />
         </center>
       </div>
     );
@@ -67,9 +80,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addTodo: textToAdd => dispatch(addTodo(textToAdd)),
-  deleteTodo: textToDelete => dispatch(deleteTodo(textToDelete)),
-  updateTodo: (textToUpdate,textToSet) => dispatch(updateTodo(textToUpdate,textToSet)),
+  getTodo: () => dispatch(getTodo()),
+  addTodo: (textToAdd) => dispatch(saveTodo(textToAdd)),
+  deleteTodo: (id) => dispatch(removeTodo(id)),
+  updateTodo: (id, textToSet) => dispatch(editTodo(id, textToSet)),
 });
 
 export default connect(

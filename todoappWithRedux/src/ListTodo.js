@@ -1,11 +1,10 @@
 import React from 'react';
 
 export const ListTodo = ({
-  id,
   todos,
   onEdit,
   onDelete,
-  }) => {
+}) => {
   return (
     <div>
       <table border="1">
@@ -18,12 +17,12 @@ export const ListTodo = ({
           </tr>
         </thead>
         <tbody>
-          {todos && todos.map(todo => 
-            <tr key={id}>
-              <td>{++id}</td>
-              <td>{todo.description}</td>
-              <td><button onClick={onEdit.bind(null, todo.description)}>Edit</button></td>
-              <td><button onClick={onDelete.bind(null, todo.description)}>Delete</button></td>
+          {todos && todos.map(todo =>
+            <tr key={todo.id}>
+              <td>{todo.id}</td>
+              <td>{todo.desc}</td>
+              <td><button onClick={onEdit.bind(null, todo.id)}>Edit</button></td>
+              <td><button onClick={onDelete.bind(null, todo.id)}>Delete</button></td>
             </tr>
           )}
         </tbody>
