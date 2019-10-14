@@ -6,16 +6,25 @@ class CheckoutProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showComponent: false,
-    };
-    this._onButtonClick = this._onButtonClick.bind(this);
+      url: '/view',
+    }
+  }
+
+  checkProductCount() {
+    if (this.props.totalProductCount === 0) {
+      alert('Products not selected.');
+      this.setState({
+        url: '/',
+      })
+      return false;
+    }
   }
 
   render() {
     return (
       <div><br />
-        Product count : {this.props.productCount}<br /><br />
-        <Link to="/view"><button >Check Out</button></Link><br /><br />
+        Product count : {this.props.totalProductCount}<br /><br />
+        <Link to={this.state.url}><input type="button" onClick={this.checkProductCount.bind(this)} value="Check Out"></input></Link><br /><br />
         <br />
       </div>
     );
