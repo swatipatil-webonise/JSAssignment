@@ -1,5 +1,5 @@
 import React from 'react';
-import ViewProducts from './ViewProducts';
+import { Link } from 'react-router-dom'
 
 class CheckoutProducts extends React.Component {
 
@@ -11,21 +11,12 @@ class CheckoutProducts extends React.Component {
     this._onButtonClick = this._onButtonClick.bind(this);
   }
 
-  _onButtonClick() {
-    this.setState({
-      showComponent: true,
-    });
-  }
-
   render() {
     return (
       <div><br />
         Product count : {this.props.productCount}<br /><br />
-        <button onClick={this._onButtonClick}>Check Out</button><br /><br />
-        {this.state.showComponent ?
-          <ViewProducts products={this.props.products} /> :
-          null
-        }<br />
+        <Link to="/view"><button >Check Out</button></Link><br /><br />
+        <br />
       </div>
     );
   }
