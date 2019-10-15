@@ -2,81 +2,80 @@ import React from 'react';
 import CheckoutProducts from './CheckoutProducts';
 import { ListProducts } from './ListProducts';
 import { connect } from 'react-redux';
-import { increamentCount, decreamentCount, getProducts } from './store/actions/todo';
+import { addProduct, addCount, subtractCount, removeProduct } from './store/actions/actions';
+
+export const products = [{
+  id: 0,
+  product: 'LANCER Blue Running Shoes',
+  quantity: 0,
+  price: 400,
+}, {
+  id: 1,
+  product: 'BATA Blue Running Shoes',
+  quantity: 0,
+  price: 600,
+}, {
+  id: 2,
+  product: 'RELAXO Blue Running Shoes',
+  quantity: 0,
+  price: 1000,
+}]
 
 class ShopApp extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = {
-      products: [{
-        id: 0,
-        product: 'LANCER Blue Running Shoes',
-        productCount: 0,
-        price: 400,
-      }, {
-        id: 1,
-        product: 'BATA Blue Running Shoes',
-        productCount: 0,
-        price: 600,
-      }, {
-        id: 2,
-        product: 'RELAXO Blue Running Shoes',
-        productCount: 0,
-        price: 1000,
-      }],
-      totalProductCount: 0,
-      op: 0,
-    };
+  }
+
+  onAddCount = (id) => {
+    let flag = 0;
+    for (let i = 0; i < this.props.products.length; i++) {
+      if (this.props.products[i].id === id) {
+        flag = 1;
+      }
+    }
+    if (flag === 1) {
+      this.props.incCount(id);
+    } else {
+      this.props.onAddProduct(products[id]);
+      this.props.incCount(id);
+    }
+  }
+
+  onSubtractCount = (id) => {
+    let flag = 0;
+    for (let i = 0; i < this.props.products.length; i++) {
+      if (this.props.products[i].id === id && this.props.products[i].quantity > 0) {
+        flag = 1;
+      }
+      if (this.props.products[i].quantity === 1) {
+        this.props.decCount(id);
+        this.props.onRemoveProduct(id);
+        return;
+      }
+    }
+    if (flag === 1) {
+      this.props.decCount(id);
+    } else {
+      alert('Please add the product first.');
+    }
   }
 
   onAdd = (id) => {
-    this.props.addCount(id);
-    this.setState({
-      totalProductCount: this.state.totalProductCount + 1,
-      op: 1,
-    });
-    this.write(id);
-  }
-
-  onSubtract = (id) => {
-    this.props.subtractCount(id);
-    this.setState({
-      totalProductCount: this.state.totalProductCount - 1,
-      op: -1,
-    });
-    this.write(id);
-  }
-
-  componentDidMount() {
-    this.props.getProducts(this.state.products);
-    this.setState({
-      products: JSON.parse(localStorage.getItem('products')),
-    })
-    this.write(0);
-  }
-
-  write = (id) => {
-    if (id === 0) {
-      localStorage.setItem('products', JSON.stringify(this.state.products));
-    } else {
-      let things = JSON.parse(localStorage.getItem('products'));
-      if (this.state.op === 1) {
-        things[id - 1].productCount++;
-        localStorage.setItem('products', JSON.stringify(this.state.products));
-      } else {
-        things[id - 1].productCount--;
-        localStorage.setItem('products', JSON.stringify(this.state.products));
+    for (let i = 0; i < this.props.products.length; i++) {
+      if (this.props.products[i].id === id) {
+        alert('Product already added plz add quantity.');
+        return;
       }
     }
+    this.props.onAddProduct(products[id]);
   }
 
   render() {
     return (
       <div>
         <center>
-          <CheckoutProducts products={this.state.products} totalProductCount={this.state.totalProductCount} /><br /><br />
-          <ListProducts products={this.state.products} onAdd={this.onAdd} onSubtract={this.onSubtract} />
+          <CheckoutProducts products={this.props.products} /><br /><br />
+          <ListProducts products={products} onAddCount={this.onAddCount} onSubtractCount={this.onSubtractCount} onAdd={this.onAdd} />
         </center>
       </div>
     );
@@ -84,14 +83,15 @@ class ShopApp extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.products,
+  products: state.todos,
 });
 
-const mapDispatchToProps = {
-  getProducts,
-  addCount: increamentCount,
-  subtractCount: decreamentCount,
-};
+const mapDispatchToProps = dispatch => ({
+  onAddProduct: (product) => dispatch(addProduct(product)),
+  onRemoveProduct: (id) => dispatch(removeProduct(id)),
+  incCount: (id) => dispatch(addCount(id)),
+  decCount: (id) => dispatch(subtractCount(id))
+});
 
 export default connect(
   mapStateToProps,

@@ -5,26 +5,29 @@ class CheckoutProducts extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      url: '/view',
+    }
+
+  checkCount = (event) => {
+    if (this.countProducts() === 0) {
+      event.preventDefault();
+      alert('Product yet not selected');
     }
   }
 
-  checkProductCount() {
-    if (this.props.totalProductCount === 0) {
-      alert('Products not selected.');
-      this.setState({
-        url: '/',
-      })
-      return false;
+  countProducts() {
+    let count = 0;
+    let products = this.props.products;
+    for (let i = 0; i < products.length; i++) {
+      count = count + products[i].quantity;
     }
+    return count;
   }
 
   render() {
     return (
       <div><br />
-        Product count : {this.props.totalProductCount}<br /><br />
-        <Link to={this.state.url}><input type="button" onClick={this.checkProductCount.bind(this)} value="Check Out"></input></Link><br /><br />
+        Product count : {this.countProducts()}<br /><br />
+        <Link to='/view'><input type="button" value="Check Out" onClick={this.checkCount.bind(this)}></input></Link><br /><br />
         <br />
       </div>
     );
