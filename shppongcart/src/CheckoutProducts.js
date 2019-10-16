@@ -5,10 +5,10 @@ class CheckoutProducts extends React.Component {
 
   constructor(props) {
     super(props);
-    }
+  }
 
   checkCount = (event) => {
-    if (this.countProducts() === 0) {
+    if (!this.countProducts()) {
       event.preventDefault();
       alert('Product yet not selected');
     }

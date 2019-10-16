@@ -28,11 +28,11 @@ class ShopApp extends React.Component {
 
   onAddCount = (id) => {
     let flag = 0;
-    for (let i = 0; i < this.props.products.length; i++) {
-      if (this.props.products[i].id === id) {
+    this.props.products.map(product => {
+      if (product.id === id) {
         flag = 1;
       }
-    }
+    })
     if (flag === 1) {
       this.props.incCount(id);
     } else {
@@ -43,16 +43,16 @@ class ShopApp extends React.Component {
 
   onSubtractCount = (id) => {
     let flag = 0;
-    for (let i = 0; i < this.props.products.length; i++) {
-      if (this.props.products[i].id === id && this.props.products[i].quantity > 0) {
+    this.props.products.map(product => {
+      if (product.id === id && product.quantity > 0) {
         flag = 1;
       }
-      if (this.props.products[i].quantity === 1) {
+      if (product.quantity === 1) {
         this.props.decCount(id);
         this.props.onRemoveProduct(id);
         return;
       }
-    }
+    })
     if (flag === 1) {
       this.props.decCount(id);
     } else {
@@ -83,7 +83,7 @@ class ShopApp extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.todos,
+  products: state.products,
 });
 
 const mapDispatchToProps = dispatch => ({
